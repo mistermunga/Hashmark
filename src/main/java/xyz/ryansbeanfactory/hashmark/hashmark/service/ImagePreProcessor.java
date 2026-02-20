@@ -14,7 +14,7 @@ public class ImagePreProcessor {
         BufferedImage canonical = new BufferedImage(
                 original.getWidth(),
                 original.getHeight(),
-                BufferedImage.TYPE_INT_RGB
+                BufferedImage.TYPE_INT_ARGB
         );
 
         Graphics2D g2d = canonical.createGraphics();
