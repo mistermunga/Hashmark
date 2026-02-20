@@ -17,7 +17,7 @@ public class HashedImage {
 
     @Column
     private String imageName;
-    
+
     @Column
     private String imagePath;
 
