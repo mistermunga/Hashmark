@@ -1,7 +1,11 @@
 package xyz.ryansbeanfactory.hashmark.hashmark.service.hashing.struct;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter @Setter
 public class MerkleTree {
 
     MerkleNode root;
@@ -10,6 +14,10 @@ public class MerkleTree {
     public MerkleTree(MerkleNode root, List<String> leafHashes) {
         this.root = root;
         this.leafHashes = leafHashes;
+    }
+
+    public String getRootHash() {
+        return root.getHash();
     }
 
     public String printMerkleTree() {
