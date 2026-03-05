@@ -13,17 +13,9 @@ import java.nio.file.Paths;
 @Service
 public class ImagePreProcessor {
 
-    private static Path OUTPUT_FOLDER;
-    private final String ROOT_FOLDER;
-
     private static final int MIN_DIMENSION = 64;
     private static final int MAX_DIMENSION = 8000;
     private static final long MAX_PIXELS = 64_000_000L;
-
-    public ImagePreProcessor() {
-        ROOT_FOLDER = System.getProperty("user.dir");
-        OUTPUT_FOLDER = Paths.get(ROOT_FOLDER, "output");
-    }
 
     public BufferedImage canonicalizeToPNG(BufferedImage original) {
 
@@ -68,37 +60,5 @@ public class ImagePreProcessor {
         g2d.dispose();
 
         return canonical;
-    }
-
-    public String save(BufferedImage image, String imageName) throws IOException {
-
-        if (image == null) {
-            throw new IllegalArgumentException("Image cannot be null.");
-        }
-
-        if (imageName == null || imageName.isBlank()) {
-            throw new IllegalArgumentException("Invalid image name.");
-        }
-
-        int width = image.getWidth();
-        int height = image.getHeight();
-
-        if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Invalid image dimensions.");
-        }
-
-        Files.createDirectories(OUTPUT_FOLDER);
-
-        Path imagePath = OUTPUT_FOLDER.resolve(imageName + ".png");
-
-        ImageIO.write(image, "png", imagePath.toFile());
-
-        if (!Files.exists(imagePath)) {
-            throw new IOException("Failed to write image.");
-        }
-
-        return Paths.get(ROOT_FOLDER)
-                .relativize(imagePath)
-                .toString();
     }
 }
