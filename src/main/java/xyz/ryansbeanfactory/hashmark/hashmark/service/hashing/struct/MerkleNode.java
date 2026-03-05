@@ -1,5 +1,9 @@
 package xyz.ryansbeanfactory.hashmark.hashmark.service.hashing.struct;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class MerkleNode {
 
     String hash;
